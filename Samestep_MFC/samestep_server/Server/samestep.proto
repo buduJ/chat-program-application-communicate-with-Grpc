@@ -1,0 +1,45 @@
+syntax="proto3";
+
+
+// 包名是生成代码的使用的namespace，所有代码都在这个下面
+package Simple;
+
+import "timestamp.proto";
+
+// 指定服务的名称
+service Server {
+
+	// 测试接口三
+	rpc Test3(TestRequest) returns (TestReply) {}
+	//向服务端
+	rpc ToS (Post) returns (Post) {}
+	//向客户端
+	rpc ToC (Id) returns (Post) {}
+	rpc Exist_Test (Id) returns (Post){}
+}
+
+
+message TestRequest {
+	string name   = 1; // 客户端名称
+	int32  id     = 2; // 客户端IP
+	double value  = 3; // 附带一个值
+}
+
+message TestReply {
+	int32  tid        = 1; // 服务线程ID
+	string svrname    = 2; // 服务名称
+	double takeuptime = 3; // 请求处理耗时
+}
+
+message Post{
+  int32 id = 1 ;
+  string content = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  bool exist = 4;
+  int32 next_id = 5;
+ }
+
+ message Id{
+   int32 id = 1;
+   string content = 2;
+ }
